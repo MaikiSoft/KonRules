@@ -8,13 +8,16 @@ const capSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    numeroArts: {
+    numeroArticulos: {
         type: String,
         required: true,
     },
     palabrasClave: {
         type: [String],
         requiered: true,
-    }
+    },
+    articulos: {
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Articulo'}],
+    },
 });
 module.exports = mongoose.model("Capitulo", capSchema);

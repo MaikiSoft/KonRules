@@ -1,23 +1,25 @@
-
 //modulo de sugerencias
 const mongoose = require("mongoose"); // importando el componente mogoose
 const sugSchema = mongoose.Schema({
     
     fecha: {
         type: Date,
-        requiered: true,
-    },
-    prioridad: {
-        type: String,
-        requiered: true,
+        required: true,
     },
     sugerencia: {
         type: String,
-        requiered: true,
+        required: true,
     },
     categoria: {
-        type: String,
-        requiered: true,
+        //true para imagen y false para video
+        type: Boolean,
+        required: true,
+    },
+    //articulo al que pertenece
+    idArticulo:{
+        type: Number,
+        required: true,
     }
+
 });
 module.exports = mongoose.model("Sugerencias", sugSchema);
