@@ -6,6 +6,7 @@ const capituloRoutes = require("./routes/capitulo");
 const sugerenciaRoutes = require("./routes/sugerencia");
 const articuloRoutes = require("./routes/articulo");
 const ejemploRoutes = require("./routes/ejemplo");
+const authRoutes = require("./routes/authentication")
 const mongoose = require("mongoose");
 require('dotenv').config();
 app.use(parser.urlencoded({ extended: false })); //permite leer los datos que vienen en la petición
@@ -15,6 +16,7 @@ app.use("/api", capituloRoutes);
 app.use("/api", sugerenciaRoutes);
 app.use("/api", articuloRoutes);
 app.use("/api", ejemploRoutes);
+app.use("/api", authRoutes);
 app.use(express.json());
 //Conexión a la base de datos
 mongoose
