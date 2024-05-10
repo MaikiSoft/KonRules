@@ -11,6 +11,36 @@ router.post("/sugerencias", verifyToken,  (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+//Consultar 
+router.get("/sugerencias", (req, res) => {
+    sugSchema.find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+//modificar
+router.put("/sugerencias/:id", (req, res) => {
+    const { id } = req.params;
+    const {fecha, sugerencia, categoría, idArticulo} = req.body;
+    sugSchema
+        .updateOne({ _id: id }, {
+            $set: { fecha, sugerencia, categoría, idArticulo }
+        })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+//eliminar
+router.delete("/sugerencias/:id", (req, res) => {
+    const { id } = req.params;
+    sugSchema
+        .findByIdAndDelete(id)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((error) => {
+            res.json({ message: error });
+        });
+});
+
 
 module.exports = router;
 
