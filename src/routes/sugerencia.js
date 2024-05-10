@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router(); 
 const sugSchema = require("../models/sugerencia");
+const verifyToken = require('./validate_token');
 
 //El post lo hace SOLO el usuario
-router.post("/sugerencias", (req, res) => {
+router.post("/sugerencias", verifyToken,  (req, res) => {
     const sugerencia = new sugSchema(req.body);
     sugerencia
         .save()

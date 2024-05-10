@@ -1,9 +1,10 @@
 const express = require("express");
+const verifyToken = require('./validate_token');
 const router = express.Router(); //manejador de rutas de express
 const ArticuloSchema = require("../models/articulo");
 
 //Admin (falta clave) 
-router.post("/articulos", (req, res) => {
+router.post("/articulos", verifyToken, (req, res) => {
     const articulo = ArticuloSchema(req.body);
     articulo
         .save()

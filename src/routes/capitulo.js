@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router(); //manejador de rutas de express
 const capituloSchema = require("../models/capitulo");
+const verifyToken = require('./validate_token');
 
 //Admin (falta clave) 
-router.post("/capitulos", (req, res) => {
+router.post("/capitulos", verifyToken, (req, res) => {
     const capitulo = capituloSchema(req.body);
     capitulo
         .save()
