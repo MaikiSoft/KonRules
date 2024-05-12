@@ -12,4 +12,18 @@ router.post("/articulos", verifyToken, (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+//Elimina el articulo buscado por el ID (admin)
+router.delete("/articulo/delete/:id", verifyToken, (req, res) => {
+    ArticuloSchema.findByIdAndDelete(req.params.id, req.body, { new: true })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+});
+
+//Buscar todos los articulos(Usuario)
+router.get("/articulos", (req, res) => {
+    ArticuloSchema.find()
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+});
+
 module.exports = router;

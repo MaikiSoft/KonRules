@@ -8,6 +8,7 @@ const SchemaEjemplo = new Schema({
   },
   image: String,
   video: String,
+  //Articulo al que pertenece
   idArticulo: {
     type: Number,
     required: true
