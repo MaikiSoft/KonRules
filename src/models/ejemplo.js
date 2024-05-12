@@ -8,8 +8,9 @@ const SchemaEjemplo = new Schema({
   },
   image: String,
   video: String,
-  Articulo: {
-    type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Articulo'}],
+  idArticulo: {
+    type: Number,
+    required: true
   }
 });
 

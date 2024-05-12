@@ -19,7 +19,7 @@ const articuloSchema = mongoose.Schema({
         required: true,
     },
     Ejemplos: {
-        type: [/*enlazar con modelo de ejemplo*/],
+        type: [{type: mongoose.Schema.Types.ObjectId, ref: 'Ejemplo'}],
         required: false,
     }
 });
