@@ -19,6 +19,20 @@ router.put("/articulo/:id/change", (req, res) => {
         .catch((error) => res.json({ message: error }))
 });
 
+// Buscar un artículo por su título
+router.put("/articulo/:titulo/change", (req, res) => {
+    ArticuloSchema.findOneAndUpdate({ titulo: req.params.titulo }, req.body, { new: true })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+});
+
+// Buscar un artículo por su número de artículo
+router.put("/articulo/:numeroArticulo/change", (req, res) => {
+    ArticuloSchema.findOneAndUpdate({ numeroArticulo: req.params.numeroArticulo }, req.body, { new: true })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+});
+
 //Elimina el articulo buscado por el ID
 router.delete("/articulo/delete/:id", verifyToken, (req, res) => {
     ArticuloSchema.findByIdAndDelete(req.params.id, req.body, { new: true })
