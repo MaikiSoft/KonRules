@@ -11,9 +11,9 @@ const sugSchema = mongoose.Schema({
         required: true,
     },
     categoria: {
-        //true para imagen y false para video
+    //true para imagen y false para video
         type: Boolean,
-        required: true,
+        required: false,
     },
     //articulo al que pertenece
     idArticulo:{
