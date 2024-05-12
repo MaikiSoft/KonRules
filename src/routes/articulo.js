@@ -12,6 +12,13 @@ router.post("/articulos", verifyToken, (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+//Actualiza un articulo buscado por el ID
+router.put("/articulo/:id/change", (req, res) => {
+    ArticuloSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }))
+});
+
 //Elimina el articulo buscado por el ID
 router.delete("/articulo/delete/:id", verifyToken, (req, res) => {
     ArticuloSchema.findByIdAndDelete(req.params.id, req.body, { new: true })
