@@ -13,21 +13,21 @@ router.post("/articulos", verifyToken, (req, res) => {
 });
 
 //Actualiza un articulo buscado por el ID
-router.put("/articulo/:id/change", (req, res) => {
+router.put("/articulo/:id/change", verifyToken,(req, res) => {
     ArticuloSchema.findByIdAndUpdate(req.params.id, req.body, { new: true })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });
 
 // Buscar un artículo por su título
-router.put("/articulo/:titulo/change", (req, res) => {
+router.put("/articulo/:titulo/change", verifyToken,(req, res) => {
     ArticuloSchema.findOneAndUpdate({ titulo: req.params.titulo }, req.body, { new: true })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });
 
 // Buscar un artículo por su número de artículo
-router.put("/articulo/:numeroArticulo/change", (req, res) => {
+router.put("/articulo/:numeroArticulo/change", verifyToken,(req, res) => {
     ArticuloSchema.findOneAndUpdate({ numeroArticulo: req.params.numeroArticulo }, req.body, { new: true })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
