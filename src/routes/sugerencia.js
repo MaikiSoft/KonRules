@@ -13,20 +13,20 @@ router.post("/sugerencias",(req, res) => {
 });
 
 //Peticiones del Admin
-
+//CRUD de sugerencias
 //Consultar 
 router.get("/sugerencias",  verifyToken,(req, res) => {
     sugSchema.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
-//modificar
+
 router.put("/sugerencias/:id",  verifyToken,(req, res) => {
     const { id } = req.params;
-    const {fecha, sugerencia, categoría, idArticulo} = req.body;
+    const {fecha, sugerencia, categoria, idArticulo} = req.body;
     sugSchema
         .updateOne({ _id: id }, {
-            $set: { fecha, sugerencia, categoría, idArticulo }
+            $set: { fecha, sugerencia, categoria, idArticulo }
         })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
