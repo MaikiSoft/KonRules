@@ -10,7 +10,8 @@ const SchemaEjemplo = new Schema({
   video: String,
   //Articulo al que pertenece
   idArticulo: {
-    type: Number,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Articulo',
     required: true
   }
 });
