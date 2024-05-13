@@ -5,7 +5,7 @@ const ArticuloSchema = require("../models/articulo");
 const articuloController = require('../controllers/articuloController');
 
 //Admin
-router.post('/articulo', articuloController.crearArticulo);
+router.post('/articulo', verifyToken ,articuloController.crearArticulo);
 
 //Actualiza un articulo buscado por el ID
 router.put("/articulo/:id/change", verifyToken,(req, res) => {
