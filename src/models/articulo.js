@@ -3,7 +3,8 @@ const articuloSchema = mongoose.Schema({
     
     //capitulo al que pertenece
     idCapitulo: {
-        type: Number,
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Capitulo',
         required: true,
     },
     numeroArticulo: {

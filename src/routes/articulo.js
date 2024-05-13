@@ -2,15 +2,10 @@ const express = require("express");
 const verifyToken = require('./validate_token');
 const router = express.Router(); //manejador de rutas de express
 const ArticuloSchema = require("../models/articulo");
+const articuloController = require('../controllers/articuloController');
 
 //Admin
-router.post("/articulos", verifyToken, (req, res) => {
-    const articulo = ArticuloSchema(req.body);
-    articulo
-        .save()
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
-});
+router.post('/articulo', articuloController.crearArticulo);
 
 //Actualiza un articulo buscado por el ID
 router.put("/articulo/:id/change", verifyToken,(req, res) => {
