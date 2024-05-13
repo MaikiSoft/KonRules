@@ -20,7 +20,11 @@ router.get("/capitulos", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
-
+router.get("/capitulos/:numeroCap", (req, res) => {
+    capituloSchema.find().populate('articulos')
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
 //Busca todos los capitulos por palabra clave
 router.get("/capitulos/buscar/:palabraClave", verifyToken, (req, res) => {
     capituloSchema.find({ palabrasClave: { $in: [req.params.palabraClave] } }).populate('articulos')

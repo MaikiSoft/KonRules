@@ -4,9 +4,9 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const adminSchema = require("../models/admin");
 router.post("/signup", async (req, res) => {
-    const { codigo, correo, clave } = req.body;
+    const { usuario, correo, clave } = req.body;
     const admin = new adminSchema({
-        codigo: codigo,
+        usuario: usuario,
         correo: correo,
         clave: clave,
     });

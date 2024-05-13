@@ -9,7 +9,7 @@ const capSchema = mongoose.Schema({
         required: true,
     },
     numeroArticulos: {
-        type: String,
+        type: Number,
         required: true,
     },
     palabrasClave: {
