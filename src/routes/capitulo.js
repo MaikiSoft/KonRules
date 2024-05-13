@@ -16,10 +16,22 @@ router.put("/capitulos/:numeroCap", verifyToken, (req, res) => {
     const { numeroCap } = req.params;
     const { titulo, numeroArticulos, fecha } = req.body;
     capituloSchema.updateOne({ numeroCap: numeroCap }, {
-        $set: {  numeroCap, titulo, numeroArticulos, fecha }
+        $set: { numeroCap, titulo, numeroArticulos, fecha }
     })
-    .then((data) => res.json(data))
-    .catch((error) => res.json({ message: error }));
+        .then((data) => res.json(data))
+        .catch((error) => res.json({ message: error }));
+});
+//elimina el capitulo por id
+router.delete("/capitulos/:id",verifyToken, (req, res) => {
+    const { id } = req.params;
+    capituloSchema
+        .findByIdAndDelete(id)
+        .then((data) => {
+            res.json(data);
+        })
+        .catch((error) => {
+            res.json({ message: error });
+        });
 });
 
 //Peticiones del usuario
