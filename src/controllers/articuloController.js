@@ -79,3 +79,44 @@ exports.crearEjemplo = async function(req, res) {
     res.status(500).send(err);
   }
 };
+
+//sugerencia
+
+// Primero, importa los modelos
+const Sugerencia = require('../models/sugerencia');
+exports.crearSugerencia = async function(req, res) {
+  // Obtiene los datos del cuerpo de la solicitud
+  const { title, fecha, sugerencia, categoria } = req.body;
+
+  try {
+    // Busca el ejemplo por su título
+    const ejemploEncontrado = await Ejemplo.findOne({ title: title });
+
+    // Si el ejemplo no se encuentra, devuelve un error
+    if (!ejemploEncontrado) {
+      return res.status(404).send('Ejemplo no encontrado');
+    }
+
+    // Una vez que tienes el ejemplo, puedes crear la sugerencia
+    const nuevaSugerencia = new Sugerencia({
+      idEjemplo: ejemploEncontrado._id,
+      fecha: fecha,
+      sugerencia: sugerencia,
+      categoria: categoria,
+    });
+
+    // Guarda la sugerencia
+    const sugerenciaGuardada = await nuevaSugerencia.save();
+
+    // Actualiza el ejemplo para incluir el _id de la nueva sugerencia en el array de Sugerencias
+    ejemploEncontrado.sugerencias.push(sugerenciaGuardada._id);
+    await ejemploEncontrado.save();
+
+    res.status(200).send('Sugerencia guardada exitosamente!');
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+}
+
+

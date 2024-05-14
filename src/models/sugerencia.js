@@ -15,11 +15,11 @@ const sugSchema = mongoose.Schema({
         required: false,
     },
     // Ejemplo al que pertenece
-    idEjemplo:{
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Ejemplo',
-        required: true,
-    }
+    // idEjemplo:{
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Ejemplo',
+    //     required: true,
+    // }
 
 });
 module.exports = mongoose.model("Sugerencias", sugSchema);

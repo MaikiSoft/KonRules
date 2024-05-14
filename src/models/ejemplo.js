@@ -8,12 +8,7 @@ const SchemaEjemplo = new Schema({
   },
   image: String,
   video: String,
-  //Articulo al que pertenece
-  // idArticulo: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'Articulo',
-  //   required: true
-  // }
+  sugerencias: [{ type: Schema.Types.ObjectId, ref: 'Sugerencias' }] // Agregando la referencia a sugerencias
 });
 
 SchemaEjemplo.pre('save', function(next) {
