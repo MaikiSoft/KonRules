@@ -28,22 +28,22 @@ router.put("/ejemplo/:id", verifyToken, (req, res) => {
 //peticion del usuario
 
 //Buscar un ejemplo por titulo
-router.get("/ejemplo/:titulo", (req, res) => {
-    ArticuloSchema.findOne({ titulo: req.params.titulo })
+router.get("/ejemplo/:title", (req, res) => {
+    ejemploSchema.findOne({ title: req.params.title })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });
 
 //Buscar un ejemplo por idArticulo al que pertenece
 router.get("/ejemplo/:idArticulo", (req, res) => {
-    ArticuloSchema.findOne({ idArticulo: req.params.idArticulo })
+    ejemploSchema.findOne({ idArticulo: req.params.idArticulo })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });
 
 //Buscar todos los ejemplos por idArticulo al que pertenece
 router.get("/ejemplos/:idArticulo", (req, res) => {
-    ArticuloSchema.find({ idArticulo: req.params.idArticulo })
+    ejemploSchema.find({ idArticulo: req.params.idArticulo })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }))
 });

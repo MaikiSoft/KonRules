@@ -13,13 +13,7 @@ const sugSchema = mongoose.Schema({
     //true para imagen y false para video
         type: Boolean,
         required: false,
-    },
-    // Ejemplo al que pertenece
-    // idEjemplo:{
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Ejemplo',
-    //     required: true,
-    // }
+    }
 
 });
 module.exports = mongoose.model("Sugerencias", sugSchema);
