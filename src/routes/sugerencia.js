@@ -10,24 +10,14 @@ router.post("/sugerencias", articuloController.crearSugerencia);
 //Peticiones del Admin
 //CRUD de sugerencias
 //Consultar 
-router.get("/sugerencias",  verifyToken,(req, res) => {
+router.get("/sugerencias/:_id",  verifyToken,(req, res) => {
     sugSchema.find()
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
 
-router.put("/sugerencias/:id",  verifyToken,(req, res) => {
-    const { id } = req.params;
-    const {fecha, sugerencia, categoria, idArticulo} = req.body;
-    sugSchema
-        .updateOne({ _id: id }, {
-            $set: { fecha, sugerencia, categoria, idArticulo }
-        })
-        .then((data) => res.json(data))
-        .catch((error) => res.json({ message: error }));
-});
 //eliminar
-router.delete("/sugerencias/:id",  verifyToken,(req, res) => {
+router.delete("/sugerencias/:_id",  verifyToken,(req, res) => {
     const { id } = req.params;
     sugSchema
         .findByIdAndDelete(id)
