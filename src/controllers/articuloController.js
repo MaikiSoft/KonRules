@@ -39,4 +39,43 @@ exports.crearArticulo = async function(req, res) {
 };
 
 
+//ejemplo
 
+// Primero, importa los modelos
+const Ejemplo = require('../models/ejemplo');
+
+// Luego, crea el controlador
+exports.crearEjemplo = async function(req, res) {
+  // Obtiene el numeroArticulo del cuerpo de la solicitud
+  const { numeroArticulo, title, image, video } = req.body;
+
+  try {
+    // Busca el artículo por su número
+    const BusArt = await articulo.findOne({ numeroArticulo: numeroArticulo });
+
+    // Si el artículo no se encuentra, devuelve un error
+    if (!BusArt) {
+      return res.status(404).send('Articulo no encontrado');
+    }
+
+    // Una vez que tienes el artículo, puedes crear el ejemplo
+    const nuevoEjemplo = new Ejemplo({
+      idArticulo: BusArt._id,
+      title: title,
+      image: image,
+      video: video,
+    });
+
+    // Guarda el ejemplo
+    const ejemploGuardado = await nuevoEjemplo.save();
+
+    // Actualiza el artículo para incluir el _id del nuevo ejemplo en el array de Ejemplos
+    BusArt.Ejemplos.push(ejemploGuardado._id);
+    await BusArt.save();
+
+    res.status(200).send('Ejemplo guardado exitosamente!');
+  } catch (err) {
+    console.log(err);
+    res.status(500).send(err);
+  }
+};

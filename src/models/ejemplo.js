@@ -9,11 +9,11 @@ const SchemaEjemplo = new Schema({
   image: String,
   video: String,
   //Articulo al que pertenece
-  idArticulo: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Articulo',
-    required: true
-  }
+  // idArticulo: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'Articulo',
+  //   required: true
+  // }
 });
 
 SchemaEjemplo.pre('save', function(next) {

@@ -1,10 +1,9 @@
-//modulo de sugerencias
 const mongoose = require("mongoose"); // importando el componente mogoose
 const sugSchema = mongoose.Schema({
     
     fecha: {
         type: Date,
-        required: true,
+        default: Date.now
     },
     sugerencia: {
         type: String,
@@ -15,9 +14,10 @@ const sugSchema = mongoose.Schema({
         type: Boolean,
         required: false,
     },
-    //articulo al que pertenece
-    idArticulo:{
-        type: Number,
+    // Ejemplo al que pertenece
+    idEjemplo:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Ejemplo',
         required: true,
     }
 
