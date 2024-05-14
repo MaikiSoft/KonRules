@@ -1,12 +1,6 @@
 const mongoose = require("mongoose");
 const articuloSchema = mongoose.Schema({
     
-    //capitulo al que pertenece
-    idCapitulo: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Capitulo',
-        required: true,
-    },
     numeroArticulo: {
         type: Number,
         required: true,
